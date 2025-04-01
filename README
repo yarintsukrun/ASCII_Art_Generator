@@ -1,0 +1,51 @@
+alladin_39,yarin.tsukrun
+318532827,206462160
+
+1. Class Purposes and Relationships:
+
+	ROUND.java: Provides enums (e.g., UP, DOWN, ABS) for brightness matching strategies.
+
+	Shell.java: Acts as the main application controller, handling user input, commands,
+	 and program execution. Creating a new Image Class and setting the image,
+	 Creating a new SubImgCharMatcher and creating a newAsciiArtAlgorithm class to generate ASCII art.
+
+	AsciiArtAlgorithm.java: Implements the logic to create ASCII art from image data and given
+	 SubImgCharMatcher class.
+
+	Image.java: Represents and manipulates image data using a 2D pixel array, providing utilities
+	 padding and dividing images.
+
+
+	CharConverter.java: Converts characters into binary images (boolean 2D arrays).
+
+
+	SubImgCharMatcher.java: Matches sub-image brightness values to characters, using the ROUND
+	strategies and normalizing brightness values.
+
+	Constant.java: for saving all the constants to prevent using magic numbers.
+
+
+2. Data Structures and Scalability:
+	TreeMap in SubImgCharMatcher: Maps brightness values to TreeSet of characters.
+	TreeMap is allowing us to search in O(log(n)) with the methods higherEntry, lowerEntry and Get,
+	So we used this data structure to search for the closest value (using rounding method)
+	to the desired value.
+	That value is a TreeSet, which allows us to access all the characters with the same brightness value
+	(since there is a limited number of ASCII characters, access within the TreeSet is O(1)).
+	Therefore, insertion and deletion of values are O(log(n))
+
+
+
+3. Error Handling:
+	In the Shell class, Java's exception handling is used to manage user input errors and
+	 provide feedback. When errors like incorrect command formats or invalid inputs occur,
+	 exceptions like IllegalArgumentException are thrown with specific messages. These exceptions
+	 are caught in the Run() function, where error messages are printed to inform the user. This
+	 helps maintain system stability and ensures a smooth user experience by
+	 allowing users to correct their inputs and try again.
+
+
+
+4. Changes in SubImgCharMatcher:
+	Added the setRound method to adjust the search strategy in the TreeMap.
+
